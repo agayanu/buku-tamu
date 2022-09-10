@@ -15,3 +15,4 @@ use App\Http\Controllers\BukuTamuController;
 */
 
 Route::get('/', [BukuTamuController::class, 'index']);
+Route::post('/', [BukuTamuController::class, 'store']);
