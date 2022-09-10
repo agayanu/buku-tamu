@@ -45,16 +45,18 @@
             margin-top: 10px;
         }
         .header-txt-pesat {
-            display: contents;
-            font-weight: bold;
             font-size: 28px;
-            color: #777a7a;
         }
         .footer {
             display: block;
         }
         .footer-item {
             text-align: center;
+        }
+    }
+    @media only screen and (max-width: 378px) {
+        .header-txt-pesat {
+            font-size: 24px;
         }
     }
     </style>
