@@ -16,3 +16,5 @@ use App\Http\Controllers\BukuTamuController;
 
 Route::get('/', [BukuTamuController::class, 'index']);
 Route::post('/', [BukuTamuController::class, 'store']);
+Route::get('download-now', [BukuTamuController::class, 'download_now']);
+Route::get('download-all', [BukuTamuController::class, 'download_all']);

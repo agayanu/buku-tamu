@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\BukuNowExport;
+use App\Exports\BukuAllExport;
 
 class BukuTamuController extends Controller
 {
@@ -80,5 +83,24 @@ class BukuTamuController extends Controller
         ]);
         
         return redirect()->back()->with('success', 'Buku Tamu berhasil di tambah');
+    }
+
+    public function download_now()
+    {
+        $now = now()->format('Y-m-d');
+        $nowx = now()->format('d-m-Y');
+        $data = DB::table('buku_tamu')
+                    ->select('name','gender','hp','agency','necessary','created_at')
+                    ->whereDate('created_at', $now)->get();
+
+        return Excel::download(new BukuNowExport($data), 'Buku_Tamu_'.$nowx.'.xlsx');
+    }
+
+    public function download_all()
+    {
+        $data = DB::table('buku_tamu')
+                    ->select('name','gender','hp','agency','necessary','created_at')->get();
+
+        return Excel::download(new BukuAllExport($data), 'Buku_Tamu_All.xlsx');
     }
 }
